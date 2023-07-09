@@ -1,1 +1,1 @@
-web: gunicorn technossite.wsgi --log-file -
+web: gunicorn coresite.wsgi --log-file -
