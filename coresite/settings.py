@@ -53,7 +53,7 @@ INSTALLED_APPS = [
     'corsheaders',
     # included django community APPS:
     'rest_framework',
-    # 'drf_yasg',
+    'drf_yasg',
     'drf_yasg2',
     'inventory',
     # self started apps:
