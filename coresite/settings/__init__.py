@@ -8,3 +8,6 @@ from .corsheader_setting import *
 from .environment_setting import *
 from .filestorage_setting import *
 from .celery_setting import *
+import django_heroku
+
+django_heroku.settings(locals())
