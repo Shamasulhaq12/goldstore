@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     # included django community APPS:
     'rest_framework',
     'drf_yasg',
+    'drf_yasg2',
     'inventory',
     # self started apps:
     'core',
@@ -170,4 +171,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 AUTH_USER_MODEL = 'core.User'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+SWAGGER_SETTINGS = {
+    'DEFAULT_INFO': 'import.path.to.urls.api_info',
+}
 django_heroku.settings(locals())
