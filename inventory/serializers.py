@@ -1,8 +1,19 @@
 from rest_framework import serializers
-from .models import Account, BalanceReport
+from .models import Account, BalanceReport, GoldPrice
+
+
+class GoldPriceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = GoldPrice
+        fields = "__all__"
 
 
 class BalanceReportSerializer(serializers.ModelSerializer):
+    balance = serializers.SerializerMethodField()
+
+    def get_balance(self, obj):
+        return self.context['request'].user.balance
+
     class Meta:
         model = BalanceReport
         fields = "__all__"

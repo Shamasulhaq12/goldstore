@@ -39,18 +39,6 @@ class UserManager(BaseUserManager):
         return user
 
 
-def has_module_perms():
-    """Does the user have permissions to view the app `app_label`?"""
-    # Simplest possible answer: Yes, always
-    return True
-
-
-def has_perm():
-    """Does the user have a specific permission?"""
-    # Simplest possible answer: Yes, always
-    return True
-
-
 class User(AbstractBaseUser):
     """
     Our custom user model that extends Django's AbstractBaseUser."""
@@ -62,6 +50,7 @@ class User(AbstractBaseUser):
     username = models.CharField(max_length=255, blank=True, unique=True)
     created_at = models.DateField(blank=True, null=True)
     updated_at = models.DateField(blank=True, null=True)
+    balance = models.DecimalField(max_digits=10, decimal_places=3, default=0.000)
 
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
@@ -74,3 +63,13 @@ class User(AbstractBaseUser):
 
     def __str__(self):
         return self.email
+
+    def has_perm(self, perm, obj=None):
+        "Does the user have a specific permission?"
+        # Simplest possible answer: Yes, always
+        return True
+
+    def has_module_perms(self, app_label):
+        "Does the user have permissions to view the app `app_label`?"
+        # Simplest possible answer: Yes, always
+        return True
