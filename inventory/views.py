@@ -3,7 +3,7 @@ from rest_framework import viewsets
 from rest_framework.response import Response
 from decimal import Decimal
 from .models import Account, BalanceReport, GoldPrice
-from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.permissions import IsAuthenticated
 from .serializers import AccountSerializer, GoldPriceSerializer, BalanceReportSerializer
 
 
@@ -23,7 +23,7 @@ class AccountViewSet(viewsets.ModelViewSet):
 class BalanceReportViewSet(viewsets.ModelViewSet):
     queryset = BalanceReport.objects.all()
     serializer_class = BalanceReportSerializer
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
 
     def create(self, request, *args, **kwargs):
         payable = request.data.get('payable', None)

@@ -31,16 +31,16 @@ class GoldPriceAdmin(admin.ModelAdmin):
 
 @admin.register(BalanceReport)
 class BalanceReportAdmin(admin.ModelAdmin):
-    list_display = ('account', 'gold_price', 'receivable', 'payable', 'balance',
+    list_display = ('account', 'gold_price', 'receivable', 'payable',
                     'rati', 'gold', 'cash_in', 'cash_out', 'created_at', 'updated_at')
-    list_filter = ('account', 'gold_price', 'receivable', 'payable', 'balance',
+    list_filter = ('account', 'gold_price', 'receivable', 'payable',
                    'rati', 'gold', 'cash_in', 'cash_out', 'created_at', 'updated_at')
-    search_fields = ('account', 'gold_price', 'receivable', 'payable', 'balance',
+    search_fields = ('account', 'gold_price', 'receivable', 'payable',
                      'rati', 'gold', 'cash_in', 'cash_out', 'created_at', 'updated_at')
     readonly_fields = ('created_at', 'updated_at')
-    ordering = ('account', 'gold_price', 'receivable', 'payable', 'balance',
+    ordering = ('account', 'gold_price', 'receivable', 'payable',
                 'rati', 'gold', 'cash_in', 'cash_out', 'created_at', 'updated_at')
     fieldsets = (
         (None, {'fields': ('account', 'gold_price', 'receivable',
-         'payable', 'balance', 'rati', 'gold', 'cash_in', 'cash_out',)}),
+         'payable',  'rati', 'gold', 'cash_in', 'cash_out',)}),
     )
