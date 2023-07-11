@@ -50,7 +50,8 @@ class User(AbstractBaseUser):
     username = models.CharField(max_length=255, blank=True, unique=True)
     created_at = models.DateField(blank=True, null=True)
     updated_at = models.DateField(blank=True, null=True)
-    balance = models.DecimalField(max_digits=10, decimal_places=3, default=0.000)
+    balance = models.DecimalField(
+        max_digits=10, decimal_places=3, default=0.000)
 
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
