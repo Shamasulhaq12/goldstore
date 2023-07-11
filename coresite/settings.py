@@ -169,7 +169,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
-AUTH_USER_MODEL = 'core.User'
+# AUTH_USER_MODEL = 'core.User'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # SWAGGER_SETTINGS = {
 #     'DEFAULT_INFO': 'import.path.to.urls.api_info',
