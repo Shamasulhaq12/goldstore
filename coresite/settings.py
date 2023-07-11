@@ -79,7 +79,7 @@ MIDDLEWARE = [
 #         "debug_toolbar.middleware.DebugToolbarMiddleware",
 #     ]
 ROOT_URLCONF = 'coresite.urls'
-
+AUTH_USER_MODEL = 'core.User'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -169,7 +169,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
-# AUTH_USER_MODEL = 'core.User'
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # SWAGGER_SETTINGS = {
 #     'DEFAULT_INFO': 'import.path.to.urls.api_info',
