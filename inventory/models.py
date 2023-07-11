@@ -39,4 +39,4 @@ class BalanceReport(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return str(self.date)
+        return str(self.account.name)
