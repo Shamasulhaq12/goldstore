@@ -36,7 +36,7 @@ class BalanceReportViewSet(viewsets.ModelViewSet):
         cash_out = 0.000
         try:
             balance = request.user.balance
-            gold_price = GoldPrice.objects.get(id=gold_price)
+            gold_price = GoldPrice.objects.get(id=gold_price).price
             if _type == "gold":
                 if payable:
                     impure_gold = round(

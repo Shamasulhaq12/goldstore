@@ -10,6 +10,7 @@ class GoldPriceSerializer(serializers.ModelSerializer):
 
 class BalanceReportSerializer(serializers.ModelSerializer):
     balance = serializers.SerializerMethodField()
+    account_name  = serializers.CharField(source='account.name', read_only=True)
 
     def get_balance(self, obj):
         return self.context['request'].user.balance
