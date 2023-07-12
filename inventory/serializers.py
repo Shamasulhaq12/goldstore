@@ -14,13 +14,13 @@ class BalanceReportSerializer(serializers.ModelSerializer):
     total_payable = serializers.SerializerMethodField()
     total_receivable = serializers.SerializerMethodField()
 
-    def get_payable(self, obj):
+    def get_total_payable(self, obj):
         try:
             return obj.total_payable
         except:
             return 0
 
-    def get_receivable(self, obj):
+    def get_total_receivable(self, obj):
         try:
             return obj.total_receivable
         except:
