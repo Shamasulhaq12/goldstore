@@ -11,8 +11,8 @@ class GoldPriceSerializer(serializers.ModelSerializer):
 class BalanceReportSerializer(serializers.ModelSerializer):
     balance = serializers.SerializerMethodField()
     account_name = serializers.CharField(source='account.name', read_only=True)
-    payable = serializers.SerializerMethodField()
-    receivable = serializers.SerializerMethodField()
+    total_payable = serializers.SerializerMethodField()
+    total_receivable = serializers.SerializerMethodField()
 
     def get_payable(self, obj):
         try:
