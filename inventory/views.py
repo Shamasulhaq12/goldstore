@@ -137,12 +137,9 @@ class BalanceReportViewSet(viewsets.ModelViewSet):
 
     def list(self, request, *args, **kwargs):
         account = self.request.query_params.get('account', None)
-        queryset = BalanceReport.objects.all().aggregate(
-            total_payable=Sum('payable'), total_receiveable=Sum('receivable'))
+        queryset = BalanceReport.objects.all()
         if account:
-            queryset = BalanceReport.objects.filter(
-                account=account).aggregate(
-                total_payable=Sum('payable'), total_receiveable=Sum('receivable'))
+            queryset = BalanceReport.objects.filter(account=account)
         serializer = BalanceReportSerializer(
             queryset, many=True, context={'request': request})
         return Response(serializer.data, status=status.HTTP_200_OK)
