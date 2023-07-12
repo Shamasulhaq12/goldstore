@@ -2,6 +2,7 @@ from rest_framework import status
 from rest_framework import viewsets
 from rest_framework.response import Response
 from decimal import Decimal
+from django.db.models import Sum
 from rest_framework import filters
 from django_filters import rest_framework as backend_filters
 from .models import Account, BalanceReport, GoldPrice
@@ -136,9 +137,12 @@ class BalanceReportViewSet(viewsets.ModelViewSet):
 
     def list(self, request, *args, **kwargs):
         account = self.request.query_params.get('account', None)
-        queryset = BalanceReport.objects.all()
+        queryset = BalanceReport.objects.all().aggregate(
+            total_payable=Sum('payable'), total_receiveable=Sum('receivable'))
         if account:
-            queryset = BalanceReport.objects.filter(account=account)
+            queryset = BalanceReport.objects.filter(
+                account=account).aggregate(
+                total_payable=Sum('payable'), total_receiveable=Sum('receivable'))
         serializer = BalanceReportSerializer(
             queryset, many=True, context={'request': request})
         return Response(serializer.data, status=status.HTTP_200_OK)
