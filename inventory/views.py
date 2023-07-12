@@ -2,7 +2,10 @@ from rest_framework import status
 from rest_framework import viewsets
 from rest_framework.response import Response
 from decimal import Decimal
+from rest_framework import filters
+from django_filters import rest_framework as backend_filters
 from .models import Account, BalanceReport, GoldPrice
+from .filters import JobFilters
 from rest_framework.permissions import IsAuthenticated
 from .serializers import AccountSerializer, GoldPriceSerializer, BalanceReportSerializer
 
@@ -10,6 +13,7 @@ from .serializers import AccountSerializer, GoldPriceSerializer, BalanceReportSe
 class GoldPriceViewSet(viewsets.ModelViewSet):
     allowed_methods = ['GET', 'POST', 'PUT']
     queryset = GoldPrice.objects.all()
+
     serializer_class = GoldPriceSerializer
     permission_classes = [IsAuthenticated]
 
@@ -23,7 +27,15 @@ class AccountViewSet(viewsets.ModelViewSet):
 class BalanceReportViewSet(viewsets.ModelViewSet):
     queryset = BalanceReport.objects.all()
     serializer_class = BalanceReportSerializer
+    filterset_class = JobFilters
+    search_fields = ['account__name']
     permission_classes = [IsAuthenticated]
+
+    filter_backends = [
+
+        backend_filters.DjangoFilterBackend,
+        filters.SearchFilter,
+    ]
 
     def create(self, request, *args, **kwargs):
         payable = request.data.get('payable', None)

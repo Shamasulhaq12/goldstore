@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'drf_yasg',
     'drf_yasg2',
+    'django_filters',
     'inventory',
     # self started apps:
     'core',
@@ -133,11 +134,13 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
 
+
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
 
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
 }
 
 # CORS HEADER ALLOWED_HOSTS
