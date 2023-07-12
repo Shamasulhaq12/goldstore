@@ -10,7 +10,7 @@ class GoldPriceSerializer(serializers.ModelSerializer):
 
 class BalanceReportSerializer(serializers.ModelSerializer):
     balance = serializers.SerializerMethodField()
-    account_name  = serializers.CharField(source='account.name', read_only=True)
+    account_name = serializers.CharField(source='account.name', read_only=True)
 
     def get_balance(self, obj):
         return self.context['request'].user.balance
@@ -21,6 +21,11 @@ class BalanceReportSerializer(serializers.ModelSerializer):
 
 
 class AccountSerializer(serializers.ModelSerializer):
+    balance_report = serializers.SerializerMethodField()
+
+    def get_balance_report(self, obj):
+        return BalanceReportSerializer(obj.balance_report.last(), context={'request': self.context['request']}).data
+
     class Meta:
         model = Account
         fields = "__all__"
