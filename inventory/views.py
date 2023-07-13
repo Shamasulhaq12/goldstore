@@ -8,15 +8,19 @@ from django_filters import rest_framework as backend_filters
 from .models import Account, BalanceReport, GoldPrice
 from .filters import JobFilters
 from rest_framework.permissions import IsAuthenticated
-from .serializers import AccountSerializer, GoldPriceSerializer, BalanceReportSerializer
+from .serializers import AccountSerializer, GoldPriceSerializer, BalanceReportSerializer, UpdateGoldPriceSerializer
 
 
 class GoldPriceViewSet(viewsets.ModelViewSet):
-    allowed_methods = ['GET', 'POST', 'PUT']
+    
     queryset = GoldPrice.objects.all()
 
     serializer_class = GoldPriceSerializer
     permission_classes = [IsAuthenticated]
+    def get_serializer_class(self):
+        if self.action == 'PATCH':
+            return UpdateGoldPriceSerializer
+        return GoldPriceSerializer
 
 
 class AccountViewSet(viewsets.ModelViewSet):

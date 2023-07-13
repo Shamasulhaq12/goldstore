@@ -67,8 +67,10 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
+    
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -144,8 +146,32 @@ REST_FRAMEWORK = {
 }
 
 # CORS HEADER ALLOWED_HOSTS
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['http://192.168.0.144:3000', 'http://192.168.0.145:3000']
+# Cors settings
 CORS_ORIGIN_ALLOW_ALL = True
+
+CORS_ALLOW_METHODS = (
+    'GET',
+    'PUT',
+    'POST',
+    'PATCH',
+    'DELETE',
+    'OPTIONS',
+)
+CORS_ALLOW_HEADERS = (
+    'dnt',
+    'accept',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'Content-Type',
+    'content-type',
+    'authorization',
+    'accept-encoding',
+    'x-requested-with',
+    'access-control-allow-origin',
+    'Access-Control-Allow-Origin',
+)
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/

@@ -7,6 +7,11 @@ class GoldPriceSerializer(serializers.ModelSerializer):
         model = GoldPrice
         fields = "__all__"
 
+class UpdateGoldPriceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = GoldPrice
+        fields = ["price","id"]
+
 
 class BalanceReportSerializer(serializers.ModelSerializer):
     balance = serializers.SerializerMethodField()
