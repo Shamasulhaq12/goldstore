@@ -188,6 +188,11 @@ REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
 }
 
+# CORS HEADER ALLOWED_HOSTS
+ALLOWED_HOSTS = ['*']
+# Cors settings
+CORS_ORIGIN_ALLOW_ALL = True
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
