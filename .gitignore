@@ -9,6 +9,8 @@ nynx/__pycache__/settings.cpython-36.pyc
 #pm2
 media/
 Pipfile
+/frontend
+/frontend/
 Pipfile.lock
 venv/
 echosystem.config.json
