@@ -12,11 +12,12 @@ from .serializers import AccountSerializer, GoldPriceSerializer, BalanceReportSe
 
 
 class GoldPriceViewSet(viewsets.ModelViewSet):
-    
+
     queryset = GoldPrice.objects.all()
 
     serializer_class = GoldPriceSerializer
     permission_classes = [IsAuthenticated]
+
     def get_serializer_class(self):
         if self.action == 'PATCH':
             return UpdateGoldPriceSerializer
@@ -48,6 +49,7 @@ class BalanceReportViewSet(viewsets.ModelViewSet):
         gold_price = request.data.get('gold_price', None)
         rati = request.data.get('rati', None)
         _type = request.data.get('type', None)
+        data = request.data
         gold = 0.000
         cash_in = 0.000
         cash_out = 0.000
@@ -76,7 +78,10 @@ class BalanceReportViewSet(viewsets.ModelViewSet):
                                  Decimal(gold_price)*Decimal(11.664), 3)
                     balance += gold
                     cash_in = receivables
-            data = request.data
+
+                data['payable'] = 0
+                data['receivable'] = 0
+
             data['gold'] = gold
             data['cash_in'] = cash_in
             data['cash_out'] = cash_out
